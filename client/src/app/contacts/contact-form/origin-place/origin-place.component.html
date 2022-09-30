@@ -1,0 +1,35 @@
+<div class="row " style="margin-right: 4%; margin-left:4%; margin-bottom: 4%"
+  *ngFor="let place of placesValues; let i = index">
+
+  <div class="col-5" style="margin-left: 50px;">
+    <mat-select-country style="display: block; padding:3%" autocomplete="off" label="Select Country" fxFlex.lg="1px"
+     [value]="place"  (onCountrySelected)="onCountrySelected($event, i)" [required]="true">
+    </mat-select-country>
+  </div>
+
+  <div class="col-3 mt-2" >
+    <mat-form-field class="example-full-width" appearance="legacy">
+      <mat-label>Label</mat-label>
+      <input matInput placeholder="Label" list="labelPlaces" name="place{{ i }}Type"
+        [(ngModel)]="placesValuesLabels[i].value" (keyup)="addValuePlacesLabel(i, placesValuesLabels[i])" 
+         required="">
+    </mat-form-field>
+    <datalist id="labelPlaces">
+      <option value="Father"></option>
+      <option value="Mother"></option>
+      <option value="Son"></option>
+      <option value="Grandpa"></option>
+      <option value="Grandmother"></option>
+    </datalist>
+  </div>
+  <div class="col-3">
+    <div>
+      <button pButton (click)="deletePlaces(i)" type="button" icon="fas fa-minus"
+        class="p-button-rounded p-button-danger" style="width: 30px; height:29px;"></button>
+    </div>
+  </div>
+</div>
+<div align="center">
+  <button pButton (click)="addPlaces()" (click)="addPlacesLabel()" type="button" icon="fas fa-plus"
+    class="p-button-rounded" style="width: 30px; height:29px"></button>
+</div>

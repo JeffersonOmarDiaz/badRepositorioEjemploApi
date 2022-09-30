@@ -1,0 +1,357 @@
+<div align="center">
+    <div class="login-box">
+        <h2>Contacts</h2>
+        <form #myForm="ngForm">
+            <!--Profile picture contact-->
+            <div class="col-sm-8" style="margin-left: 5%">
+                <div class="kv-avatar">
+                    <div class="file-loading">
+                        <label for="avatar-2">
+                            <figure>
+                                <img src="../assets/images/contactProfile.png" width="180px" />
+                                <img [src]="contacts.PHOTO" name="PHOTO" width="180px" />
+                                <figcaption style="color: white;background-color: rgb(66, 63, 63);font-size: small;">
+                                    Click to select Contact Profile
+                                </figcaption>
+                            </figure>
+                        </label>
+                    </div>
+                    <input id="avatar-2" name="avatar-2" type="file" style="display: none" />
+                    <p-toast></p-toast>
+                    <button type="button" (click)="show()" pButton icon="fa-solid fa-tag" label="" class="p-0"></button>
+                </div>
+            </div>
+
+            <!--User information-->
+            <div class="row">
+
+
+                <div class="col-1">
+                    <i class="pi pi-user" style="font-size: 1.1rem"></i>
+                </div>
+                <div class="col-10">
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Prefix</mat-label>
+                            <input matInput placeholder="" name="namePrefix" [(ngModel)]="contacts.NAME_PREFIX">
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-3">
+                        <div>
+                            <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                                <mat-label>First Name</mat-label>
+                                <input matInput placeholder="" name="firstName" [(ngModel)]="contacts.FIRST_NAME"
+                                    required>
+                            </mat-form-field>
+                        </div>
+                        <span class="form-text text-danger"
+                            *ngIf="myForm.controls['firstName']?.errors && myForm.controls['firstName']?.touched">Este
+                            campo
+                            es obligatorio</span>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Middle Name</mat-label>
+                            <input matInput placeholder="" name="middleName" [(ngModel)]="contacts.MIDDLE_NAME">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mb-3">
+                        <div>
+                            <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                                <mat-label>Last Name</mat-label>
+                                <input matInput placeholder="" name="lastName" [(ngModel)]="contacts.LAST_NAME"
+                                    required>
+                            </mat-form-field>
+                        </div>
+                        <span class="form-text text-danger"
+                            *ngIf="myForm.controls['lastName']?.errors && myForm.controls['lastName']?.touched">Este
+                            campo
+                            es obligatorio</span>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Mothers Maiden Name</mat-label>
+                            <input matInput placeholder="" name="mothersMaidenName"
+                                [(ngModel)]="contacts.MOTHERS_MAIDEN_NAME" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Suffix</mat-label>
+                            <input matInput placeholder="" name="nameSufix" s [(ngModel)]="contacts.NAME_SUFIX" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <div>
+                            <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                                <mat-label>Nickname</mat-label>
+                                <input matInput placeholder="" name="nickname" [(ngModel)]="contacts.NICKNAME"
+                                    required />
+                            </mat-form-field>
+                        </div>
+
+                        <span class="form-text text-danger"
+                            *ngIf="myForm.controls['nickname']?.errors && myForm.controls['nickname']?.touched">Este
+                            campo
+                            es obligatorio</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Company Information-->
+            <div class="row">
+                <div class="col-1">
+                    <i class="fa-solid fa-building" style="font-size: 1.1rem"></i>
+                </div>
+                <div class="col-10">
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Job Title</mat-label>
+                            <input matInput placeholder="" name="organization1Name"
+                                [(ngModel)]="contacts.ORGANIZATION1_NAME" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Department</mat-label>
+                            <input matInput placeholder="" name="organization1Department"
+                                [(ngModel)]="contacts.ORGANIZATION1_DEPARTMENT" />
+                        </mat-form-field>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Email-->
+            <div class="row">
+                <div class="col-1">
+                    <i class="fa-solid fa-envelope" style="font-size: 1.1rem"></i>
+                </div>
+                <div class="col-10">
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="" name="email1Value" [(ngModel)]="contacts.EMAIL1_VALUE" />
+                        </mat-form-field>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Phone-->
+            <div class="row">
+                <div class="col-1 user-box">
+                    <i class="fas fa-phone" style="font-size: 1.1rem"></i>
+                </div>
+
+                <div class="row" style="margin-right: 4%; margin-left:4%; margin-bottom: 2%"
+                    *ngFor="let phone of phonesValues; let i = index">
+                    <div class="col-5 user-box">
+                        <ngx-intl-tel-input [cssClass]="'custom'"
+                            [preferredCountries]="[CountryISO.UnitedStates,CountryISO.UnitedKingdom]"
+                            [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+                            [selectedCountryISO]="CountryISO.UnitedKingdom" [phoneValidation]="false"
+                            [(ngModel)]= "phone.number" name="phone{{ i }}Value" (keyup)="addValuePhone(i, phone.number)">
+                        </ngx-intl-tel-input>
+                    </div>
+                    <div class="col-4" style="margin-left: 7px;">
+                        <input class="form-control" list="labelContacts"  placeholder="Label"
+                            name="phone{{ i }}Type" [(ngModel)]= "phonesValuesFields[i].number" (keyup)="addValuePhoneLabel(i, phonesValuesFields[i])" required/>
+                        <datalist id="labelContacts">
+                            <option value="Home"></option>
+                            <option value="Work"></option>
+                            <option value="Mobile"></option>
+                            <option value="Main"></option>
+                            <option value="Home Fax"></option>
+                            <option value="Work Fax"></option>
+                            <option value="Google Voice"></option>
+                            <option value="Pager"></option>
+                            <option value="Ring Central"></option>
+                        </datalist>
+                    </div>
+                   <div class="col-1">
+                    <div style="margin-left: 0px;">
+                        <button pButton (click)="deletePhone(i)" type="button" icon="fas fa-minus"
+                            class="p-button-rounded p-button-danger" style="width: 30px; height:29px;"></button>
+                    </div>
+                   </div>
+                    
+                </div>
+
+
+                <!-- <app-form-contact phone1Value="{{ contacts.PHONE1_VALUE }}" phone1Type="{{ contacts.PHONE1_TYPE }}"
+                    (onNewPhoneValue1)="addNewPhoneValue1( $event )" #contactPhoneField1>
+                </app-form-contact> -->
+                <!-- <div id="contactPhoneField" #contactPhoneField></div> -->
+                <ng-template #contactPhoneField></ng-template>
+
+            </div>
+
+
+            <div>
+                <button pButton (click)="addPhone()" (click)="addPhoneLabel()" type="button" icon="fas fa-plus" class="p-button-rounded"
+                    style="width: 30px; height:29px; margin-top:2%; margin-bottom: 2%"></button>
+            </div>
+
+            <!--Maps-->
+            <div class="row">
+                <div class="col-1">
+                    <i class="pi pi-map-marker" style="font-size: 1.1rem"></i>
+                </div>
+                <div class="col-10">
+                    <div class="user-box">
+                        <input id="ship-address" name="ship-address" autocomplete="off" type="text" placeholder="" />
+                        <label>Address</label>
+                    </div>
+                    <div class="user-box">
+                        <input id="address2" name="address2" type="text" />
+                        <label>Apartment, unit, suite, or floor #</label>
+                    </div>
+                    <div class="user-box">
+                        <input id="locality" name="locality" type="text" />
+                        <label>City*</label>
+                    </div>
+                    <div class="user-box">
+                        <input id="state" name="state" />
+                        <label>State/Province*</label>
+                    </div>
+                    <div class="user-box">
+                        <input id="postcode" name="postcode" />
+                        <label>Postal code*</label>
+                    </div>
+                    <div class="user-box">
+                        <input id="country" name="country" />
+                        <label>Country/Region*</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="text" name="addressLabel" [(ngModel)]="contacts.ADDRESS1_TYPE" />
+                        <label>Label</label>
+                    </div>
+                    <!-- Reset button provided for development testing convenience.
+                    Not recommended for user-facing forms due to risk of mis-click when aiming for Submit button. -->
+                    <div>
+                        <p-button label="Clear Form" styleClass="p-button-sm" type="reset" value="Clear form">
+                        </p-button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Dates-->
+            <div class="row" style="margin-top: 1%;">
+                <div style="margin-top: 4%; margin-bottom: 2%; text-align: left; margin-left: 3%">
+                    <label for="cars">Select Important Dates:</label>
+                </div>
+                <div class="col-1">
+                    <i class="fa-solid fa-calendar-days" style="font-size: 1.1rem"></i>
+                </div>
+                <app-dates></app-dates>
+                <template #dateField> </template>
+                <div align="center">
+                    <button pButton (click)="addDateField()" type="button" icon="fas fa-plus" class="p-button-rounded"
+                        style="width: 30px; height:29px"></button>
+                </div>
+            </div>
+
+            <!--Social Media-->
+            <div class="row" style="margin-top: 1%;">
+                <div style="margin-top: 4%; margin-bottom: 2%; text-align: left; margin-left: 3%">
+                    <label for="cars">Select Social Media:</label>
+                </div>
+                <div class="col-1">
+                    <i class="fa-solid fa-thumbs-up" style="font-size: 1.1rem"></i>
+                </div>
+                <app-social-media></app-social-media>
+                <template #socialMediaField> </template>
+                <div align="center">
+                    <button pButton (click)="addSocialMediaField()" type="button" icon="fas fa-plus"
+                        class="p-button-rounded" style="width: 30px; height:29px"></button>
+                </div>
+            </div>
+
+            <!--Connections-->
+            <div class="row">
+                <div style="margin-top: 4%; margin-bottom: 2%; text-align: left; margin-left: 3%">
+                    <label for="cars">Select Connections:</label>
+                </div>
+                <div class="col-1">
+                    <i class="fa-solid fa-people-arrows-left-right" style="font-size: 1.6rem"></i>
+                </div>
+                <div class="col-10">
+                    <app-connections></app-connections>
+                    <template #connectionsField></template>
+                    <div align="center" style="margin-top: 0%;">
+                        <button pButton (click)="addConnectionsField()" type="button" icon="fas fa-plus"
+                            class="p-button-rounded" style="width: 30px; height:29px"></button>
+                    </div>
+                </div>
+                <div align="center" style="margin-top: 3%;">
+                    <p-button (click)="openNewUser()" type="button" icon="pi pi-user" class="p-button-primary"
+                        label="New User" styleClass="p-button-sm"></p-button>
+                </div>
+            </div>
+
+            <!--Language-->
+            <div class="row" style="margin-top: 1%;">
+                <div style="margin-top: 4%; margin-bottom: 2%; text-align: left; margin-left: 3%">
+                    <label for="cars">Select Preferred Languages:</label>
+                </div>
+                <div class="col-1" style="font-size: 1.2rem">
+                    <i class="fa fa-language"></i>
+                </div>
+                <div class="col-10">
+                    <app-language></app-language>
+                    <template #languageField> </template>
+                    <div align="center" style="margin-top: -6%">
+                        <button pButton (click)="addLanguageField()" type="button" icon="fas fa-plus"
+                            class="p-button-rounded" style="width: 30px; height:29px"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Origin Place-->
+            <div class="row" style="margin-top: 2%;">
+                <div style="margin-top: 4%; margin-bottom: 2%; text-align: left; margin-left: 3%">
+                    <label for="cars">Select Origin Places:</label>
+                </div>
+                <div class="col-1" style="font-size: 1.2rem">
+                    <i class="fa-solid fa-earth-americas"></i>
+                </div>
+                <div class="col-11">
+                    <app-origin-place></app-origin-place>
+                    <template #originPlaceField> </template>
+                    <div align="center" style="margin-top: -1%">
+                        <button pButton (click)="addOriginPlaceField()" type="button" icon="fas fa-plus"
+                            class="p-button-rounded" style="width: 30px; height:29px"></button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="margin-top: 4%">
+                <!-- <input type="submit"> -->
+                <!-- <p-button  (click)="edit ? updateContact() : saveNewContact()" type="submit" value="submit" icon="pi pi-edit" class="p-button-primary" label="Save"
+                         styleClass="p-button-sm" [disabled]="myForm.invalid"> 
+                    <mat-icon>edit</mat-icon>
+                </p-button> -->
+
+                <button pButton type="button" (click)="edit ? updateContact() : saveNewContact()" type="submit"
+                    value="submit" icon="pi pi-edit" class="p-button-primary" label="Save" styleClass="p-button-sm"
+                    [disabled]="myForm.invalid"></button>
+            </div>
+
+        </form>
+    </div>
+</div>

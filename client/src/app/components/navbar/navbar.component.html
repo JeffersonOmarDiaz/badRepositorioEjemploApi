@@ -1,0 +1,71 @@
+
+<mat-sidenav-container >
+
+    <mat-sidenav #sidenav mode="push">
+
+        <mat-toolbar color="primary">
+            <span>Menú</span>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <mat-nav-list style="margin-right: 15px;">
+            <a routerLink="contacts" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
+                <span>Contacts</span><span class="spacer"></span>
+            </a>
+            <a routerLink="contacts/agregar" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>balanced</mat-icon>
+                <span>Lawyers</span>
+            </a>
+            <a routerLink="funding" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>attach_money</mat-icon>
+                <span>Funding</span>
+            </a>
+            <a routerLink="contacts/buscar" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>medical_services</mat-icon>
+                <span>Medical</span>
+            </a>
+            <a routerLink="contacts/buscar" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>account_balance</mat-icon>
+                <span>Legal</span>
+            </a>
+            <a routerLink="contacts/buscar" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>monetization_on</mat-icon>
+                <span>Finances</span>
+            </a>
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-toolbar>
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <div class="col-11 mt-4" align="center">
+            <img src="/assets/images/vcLogo.png" alt="" width="350px" />
+        </div>
+
+        <span class="spacer"></span>
+        <button mat-button>
+            Logout
+        </button>
+
+    </mat-toolbar>
+
+    <div style="background-color: #f8f9fa; padding-top:1%;" *ngIf="router.url === '/contacts' || router.url === '/contacts/addContact' || router.url === '/contacts/add' || router.url === '/contacts/edit/'+idValue">
+        <app-navigation></app-navigation>
+    </div>
+
+    <div style="background-color: #f8f9fa; padding-top:1%;" *ngIf="router.url === '/funding' || router.url === '/funding/details' || router.url === '/funding/details/'+idValueFunding">
+       
+    </div>
+
+    <div class="container-fluid mt-3 mb-3 col">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-sidenav-container>

@@ -1,0 +1,287 @@
+<p-toast></p-toast>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand"></a>
+        <form class="form-inline">
+            <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded"
+                (click)="addFunding()"></button>
+        </form>
+    </div>
+</nav>
+
+<div class="row container">
+    <div class="col-12">
+        <div class="mat-h1 mt-3" style="font-size: 30px;">
+            {{ fundingContact.NICKNAME }} {{ fundingContact.LAST_NAME }}
+        </div>
+    </div>
+    <div class="col-2 ml-2">
+        <div class="mat-h2 mt-1" style="font-size: 20px;">
+            Date of Accident:
+        </div>
+    </div>
+    <div class="col-2">
+        <div class="mat-h1 mt-1" style="font-size: 20px;">
+            {{datesAccident[0]}}
+        </div>
+    </div>
+
+
+</div>
+
+
+<div>
+    <p-table [value]="funding" dataKey="id" [responsive]="true" [resizableColumns]="true" columnResizeMode="expand"
+        [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50,100,500]"
+        styleClass="p-datatable-customers p-datatable-gridlines" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [globalFilterFields]="['DATE_ACCIDENT','FUNDING_DATE','TERM_DATE','RATE', 'TERM_BUCKET', 'CLIENT_FUNDING', 'APPLICATION_FEE', 'CLOSING_COST', 'TOTAL_FUNDED', 'PAYOFF_DATE', 'PAY_OFF_5YEARS', 
+                                  'CONTRACT_NUMBER', 'VERSION']">
+        <ng-template pTemplate="header">
+            <tr>
+                <!-- <th>Date of Accident</th> -->
+                <th>Funding Date</th>
+                <th>Term Date</th>
+                <th>Rate</th>
+                <th>Term Bucket</th>
+                <th>Funding $</th>
+                <th>Application Fee</th>
+                <th>Closing Cost</th>
+                <th>Total Funded</th>
+                <th>PayOff Date</th>
+                <th>Payoff 5 years</th>
+                <th>Contract Number</th>
+                <th>Version</th>
+                <th>Current Bucket</th>
+                <th>DOA 60 Month Anniversary</th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-funding let-rowIndex="rowIndex">
+            <tr>
+                <!-- <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="date" [(ngModel)]="datesAccident[rowIndex]">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{datesAccident[rowIndex]}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td> -->
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="date" [(ngModel)]="datesFundingDate[rowIndex] " required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{datesFundingDate[rowIndex]}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="date" [(ngModel)]="termDate[rowIndex]" disabled="">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{termDate[rowIndex]}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.RATE">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.RATE}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.TERM_BUCKET">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.TERM_BUCKET }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.CLIENT_FUNDING">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.CLIENT_FUNDING | currency}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.APPLICATION_FEE" disabled="">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.APPLICATION_FEE | currency}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.CLOSING_COST" disabled="">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.CLOSING_COST | currency}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.TOTAL_FUNDED" disabled="">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.TOTAL_FUNDED | currency}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.PAYOFF_DATE">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.PAYOFF_DATE | currency}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.PAY_OFF_5YEARS">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.PAY_OFF_5YEARS | currency}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.CONTRACT_NUMBER">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.CONTRACT_NUMBER }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.VERSION">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.VERSION }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.price">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.CURRENT_BUCKET}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.DOA60_MONTH_ANNIVERSARY">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ funding.DOA60_MONTH_ANNIVERSARY }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+<div class="container mt-5" style="display: block;">
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [plugins]="barChartPlugins" [legend]="barChartLegend" [type]="barChartType">
+    </canvas>
+</div>
+
+<!-- <div class="card">
+    
+<h5>Row Editing</h5>
+    <p-table [value]="fundings2" dataKey="id" editMode="row">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th style="width:8rem"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-funding let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="funding">
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.code">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.code}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.name" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.name}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-dropdown [options]="statuses" [(ngModel)]="funding.inventoryStatus" [style]="{'width':'100%'}"></p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.inventoryStatus}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="funding.price">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{funding.price | currency: 'USD'}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="text-align:center">
+                    <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(funding)" class="p-button-rounded p-button-text"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(funding)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(funding, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div> -->

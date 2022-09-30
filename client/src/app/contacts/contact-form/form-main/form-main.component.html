@@ -1,0 +1,394 @@
+<div align="center">
+    <div class="login-box">
+        <h2>Contacts</h2>
+        <form #myForm="ngForm">
+            <!--Profile picture contact-->
+            <app-profile-picture idValue="{{idValue}}" PHOTO="{{contacts.PHOTO}}" (onUploadImage)="UploadImage($event)"></app-profile-picture>
+
+            <!--User information-->
+            <div class="row">
+                <div class="col-1">
+                    <i class="pi pi-user" style="font-size: 1.1rem"></i>
+                </div>
+                <div class="col-10">
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Prefix</mat-label>
+                            <input matInput placeholder="" name="namePrefix" [(ngModel)]="contacts.NAME_PREFIX">
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-3">
+                        <div>
+                            <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                                <mat-label>First Name</mat-label>
+                                <input matInput placeholder="" name="firstName" [(ngModel)]="contacts.FIRST_NAME">
+                            </mat-form-field>
+                        </div>
+                        <mat-error
+                            *ngIf="myForm.controls['firstName']?.errors && myForm.controls['firstName']?.touched">This
+                            field is required</mat-error>
+                    </div>
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Middle Name</mat-label>
+                            <input matInput placeholder="" name="middleName" [(ngModel)]="contacts.MIDDLE_NAME">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mb-3">
+                        <div>
+                            <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                                <mat-label>Last Name</mat-label>
+                                <input matInput placeholder="" name="lastName" [(ngModel)]="contacts.LAST_NAME">
+                            </mat-form-field>
+                        </div>
+                        <mat-error *ngIf="myForm.controls['lastName']?.errors && myForm.controls['lastName']?.touched">
+                            This
+                            field is required</mat-error>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Mothers Maiden Name</mat-label>
+                            <input matInput placeholder="" name="mothersMaidenName"
+                                [(ngModel)]="contacts.MOTHERS_MAIDEN_NAME" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Suffix</mat-label>
+                            <input matInput placeholder="" name="nameSufix" [(ngModel)]="contacts.NAME_SUFIX" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <div>
+                            <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                                <mat-label>Nickname</mat-label>
+                                <input matInput placeholder="" name="nickname" [(ngModel)]="contacts.NICKNAME"/>
+                            </mat-form-field>
+                        </div>
+
+                        <mat-error *ngIf="myForm.controls['nickname']?.errors && myForm.controls['nickname']?.touched">
+                            This
+                            field is required</mat-error>
+                    </div>
+                </div>
+            </div>
+
+            <!--Company Information-->
+            <div class="row">
+                <div class="col-1">
+                    <i class="fa-solid fa-building" style="font-size: 1.1rem"></i>
+                </div>
+                <div class="col-10">
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Job Title</mat-label>
+                            <input matInput placeholder="" name="organization1Name"
+                                [(ngModel)]="contacts.ORGANIZATION1_NAME" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Department</mat-label>
+                            <input matInput placeholder="" name="organization1Department"
+                                [(ngModel)]="contacts.ORGANIZATION1_DEPARTMENT" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <!--Email-->
+            <div class="row">
+                <div class="col-1">
+                    <i class="fa-solid fa-envelope" style="font-size: 1.1rem"></i>
+                </div>
+                <div class="col-10">
+
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="" name="email1Value" [(ngModel)]="contacts.EMAIL1_VALUE" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <!--Phone-->
+            <div class="row">
+                <div class="col-1 user-box">
+                    <i class="fas fa-phone" style="font-size: 1.1rem"></i>
+                </div>
+                <div class="row " style="margin-right: 4%; margin-left:4%; margin-bottom: 2%"
+                    *ngFor="let phone of phonesValues; let i = index">
+                    <div class="col-5 user-box mt-2">
+                        <ngx-intl-tel-input [cssClass]="'custom'"
+                            [preferredCountries]="[CountryISO.UnitedStates,CountryISO.UnitedKingdom]"
+                            [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+                            [selectedCountryISO]="CountryISO.UnitedStates" [phoneValidation]="true"
+                            [(ngModel)]="phone.number" name="phone{{ i }}Value" (keyup)="addValuePhone(i, phone.number)"
+                             [selectFirstCountry]="false">
+                        </ngx-intl-tel-input>
+
+                        <mat-error
+                            *ngIf="myForm.controls['phone' + i + 'Value']?.errors && myForm.controls['phone' + i + 'Value']?.touched">
+                            This
+                            number must be valid and must correspond to the correct prefix of your country.</mat-error>
+                    </div>
+
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Label</mat-label>
+                            <input matInput placeholder="Label" list="labelContacts" name="phone{{ i }}Type"
+                                [(ngModel)]="phonesValuesFields[i].number"
+                                (keyup)="addValuePhoneLabel(i, phonesValuesFields[i])" >
+                        </mat-form-field>
+                        <datalist id="labelContacts">
+                            <option value="Home"></option>
+                            <option value="Work"></option>
+                            <option value="Mobile"></option>
+                            <option value="Main"></option>
+                            <option value="Home Fax"></option>
+                            <option value="Work Fax"></option>
+                            <option value="Google Voice"></option>
+                            <option value="Pager"></option>
+                            <option value="Ring Central"></option>
+                        </datalist>
+
+                        <mat-error
+                            *ngIf="myForm.controls['phone' + i + 'Type']?.errors && myForm.controls['phone' + i + 'Type']?.touched">
+                            This
+                            field is required.</mat-error>
+
+                    </div>
+                    <div class="col-1">
+                        <div style="margin-left: 0px;">
+                            <button pButton (click)="deletePhone(i)" type="button" icon="fas fa-minus"
+                                class="p-button-rounded p-button-danger" style="width: 30px; height:29px;"></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <app-form-contact phone1Value="{{ contacts.PHONE1_VALUE }}" phone1Type="{{ contacts.PHONE1_TYPE }}"
+                    (onNewPhoneValue1)="addNewPhoneValue1( $event )" #contactPhoneField1>
+                </app-form-contact> -->
+                <!-- <div id="contactPhoneField" #contactPhoneField></div> -->
+                <!-- <ng-template #contactPhoneField></ng-template> -->
+            </div>
+            <div>
+                <button pButton (click)="addPhone()" (click)="addPhoneLabel()" type="button" icon="fas fa-plus"
+                    class="p-button-rounded"
+                    style="width: 30px; height:29px; margin-top:1%; margin-bottom: 2%"></button>
+            </div>
+
+            <!--Maps-->
+            <div class="row">
+                <div class="col-1">
+                    <i class="pi pi-map-marker" style="font-size: 1.1rem"></i>
+                </div>
+                <div class="col-10">
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Address</mat-label>
+                            <input matInput placeholder="" name="ship-autocomplete" [(ngModel)]="contacts.ADDRESS1_TYPE"
+                                id="autocomplete" ngx-google-places-autocomplete
+                                (onAddressChange)="placeChangedCallback($event)" />
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Apartment, unit, suite, or floor #</mat-label>
+                            <input matInput placeholder="" name="address2" [(ngModel)]="contacts.ADDRESS1_STREET"
+                                id="address2" />
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>City*</mat-label>
+                            <input matInput placeholder="" id="locality" name="locality"
+                                [(ngModel)]="contacts.ADDRESS1_CITY" />
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Province*</mat-label>
+                            <input matInput placeholder="" [(ngModel)]="contacts.ADDRESS1_REGION" id="state"
+                                name="state" />
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Postal Code*</mat-label>
+                            <input matInput placeholder="" [(ngModel)]="contacts.ADDRESS1_POSTAL_CODE" id="postcode"
+                                name="postcode" />
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Country/Region*</mat-label>
+                            <input matInput placeholder="" [(ngModel)]="contacts.ADDRESS1_COUNTRY" id="country"
+                                name="country" />
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-3">
+                        <mat-form-field class="example-full-width" appearance="fill" fxFlex="" appearance="legacy">
+                            <mat-label>Label</mat-label>
+                            <input matInput placeholder="" [(ngModel)]="contacts.ADDRESS_LABEL" name="addressLabel" />
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <p-button label="Clear Form" styleClass="p-button-sm" type="reset" value="Clear form">
+                        </p-button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Dates-->
+            <div class="row">
+                <div style="margin-top: 4%; margin-bottom: 2%; text-align: left; margin-left: 3%">
+                    <mat-label>Select Important Dates:</mat-label>
+                </div>
+                <div class="col-1">
+                    <i class="fa-solid fa-calendar-days" style="font-size: 1.1rem"></i>
+                </div>
+                <div class="row " style="margin-right: 4%; margin-left:4%; margin-bottom: 2%"
+                    *ngFor="let date of datesValues; let i = index">
+                    <div class="col-5">
+                        <div class="mb-3">
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="picker" [value]="date.value"
+                                    (dateChange)="addEvent( $event, i)" #v name="date{{i}}">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                            <div>
+                                <mat-error
+                                    *ngIf="myForm.controls['date' + i]?.errors && myForm.controls['date' + i ]?.touched">
+                                    This
+                                    field is required.
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <mat-form-field class="example-full-width" appearance="legacy">
+                            <mat-label>Label</mat-label>
+                            <input matInput placeholder="Label" list="labelDate" name="date{{ i }}Type"
+                                [(ngModel)]="datesValuesLabels[i].value"
+                                (keyup)="addValueDateLabel(i, datesValuesLabels[i])" autocomplete="off">
+                        </mat-form-field>
+                        <datalist id="labelDate">
+                            <option value="DOA"></option>
+                            <option value="Funding"></option>
+                            <option value="Birthday"></option>
+                            <option value="Marriage"></option>
+                            <option value="Death"></option>
+                            <option value="Graduation"></option>
+                            <option value="First Communion"></option>
+                        </datalist>
+                        <div>
+
+                        </div>
+                        <mat-error
+                            *ngIf="myForm.controls['date' + i + 'Type']?.errors && myForm.controls['date' + i  + 'Type']?.touched">
+                            This
+                            field is required.
+                        </mat-error>
+                    </div>
+                    <div class="col-1">
+                        <div style="margin-left: 0px;">
+                            <button pButton (click)="deleteDate(i)" type="button" icon="fas fa-minus"
+                                class="p-button-rounded p-button-danger" style="width: 30px; height:29px;"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button pButton (click)="addDate()" (click)="addDateLabel()" type="button" icon="fas fa-plus"
+                    class="p-button-rounded"
+                    style="width: 30px; height:29px; margin-top:0%; margin-bottom: 2%"></button>
+            </div>
+
+            <!--Social Media-->
+            <div class="row">
+                <div style="margin-top: 4%; margin-bottom: 2%; text-align: left; margin-left: 3%">
+                    <label for="cars">Select Social Media:</label>
+                </div>
+                <div class="col-1">
+                    <i class="fa-solid fa-thumbs-up" style="font-size: 1.1rem"></i>
+                </div>
+                <app-social-media socialValuesID="{{contacts.SOCIAL_VALUES}}"
+                    socialValuesLabelsID=" {{ contacts.SOCIAL_TYPES }}" idValue="{{idValue}}"
+                    (onUpdateSocialValue)="UpdateSocialValues( $event )"
+                    (onUpdateSocialLabelValue)="UpdateSocialValuesLabel( $event )"
+                    (onDeleteSocial)="deleteSocialValue( $event )"
+                    (onDeleteSocialLabel)="deleteSocialValueLabel( $event )"></app-social-media>
+            </div>
+
+            <!--Connections-->
+            <div class="row">
+                <div style="margin-top: 4%; margin-bottom: 2%; text-align: left; margin-left: 3%">
+                    <label for="cars">Select Connections:</label>
+                </div>
+                <div class="col-1">
+                    <i class="fa-solid fa-people-arrows-left-right" style="font-size: 1.6rem"></i>
+                </div>
+                <app-connections connectionsValuesID="{{contacts.CONNECTIONS_VALUES}}"
+                    connectionsValuesLabelsID=" {{ contacts.CONNECTIONS_TYPES }}" idValue="{{idValue}}"
+                    (onUpdateConnectionsValue)="UpdateConnectionsValues( $event )"
+                    (onUpdateConnectionsLabelValue)="UpdateConnectionsValuesLabel( $event )"
+                    (onDeleteConnections)="deleteConnectionsValue( $event )"
+                    (onDeleteConnectionsLabel)="deleteConnectionsValueLabel( $event )">
+                </app-connections>
+            </div>
+
+            <!--Language-->
+            <div class="row">
+                <div style="margin-top: 6%; margin-bottom: 2%; text-align: left; margin-left: 3%">
+                    <label for="cars">Select Preferred Languages:</label>
+                </div>
+                <div class="col-1" style="font-size: 1.2rem">
+                    <i class="fa fa-language"></i>
+                </div>
+                <div class="col-10">
+                    <app-language languageValuesID="{{contacts.LANGUAGE}}" idValue="{{idValue}}"
+                        idValueCharge="{{ idValueCharge}}" (onUpdateLanguageValue)="UpdateLanguagesValues( $event )"
+                        (onDeleteLanguage)="deleteLanguagesValues( $event )"></app-language>
+                </div>
+            </div>
+
+            <!--Origin Place-->
+            <div class="row">
+                <div style="margin-top: 8%; margin-bottom: 2%; text-align: left; margin-left: 3%">
+                    <label for="cars">Select Origin Places:</label>
+                </div>
+                <div class="col-1" style="font-size: 1.2rem">
+                    <i class="fa-solid fa-earth-americas"></i>
+                </div>
+                <app-origin-place placesValuesID="{{contacts.ORIGIN_PLACES_VALUES}}"
+                    placesValuesLabelsID=" {{ contacts.ORIGIN_PLACES_TYPES }}" idValue="{{idValue}}"
+                    (onUpdatePlacesValue)="UpdatePlacesValues( $event )"
+                    (onUpdatePlacesLabelValue)="UpdatePlacesValuesLabel( $event )"
+                    (onDeletePlaces)="deletePlacesValue( $event )"
+                    (onDeletePlacesLabel)="deletePlacesValueLabel( $event )"></app-origin-place>
+            </div>
+
+            <div style="margin-top: 4%">
+                <button pButton type="button" (click)="edit ? updateContact() : saveNewContact()" type="submit"
+                    value="submit" icon="pi pi-edit" class="p-button-primary" label="Save" styleClass="p-button-sm"
+                    [disabled]="myForm.invalid">
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

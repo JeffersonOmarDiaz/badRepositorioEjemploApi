@@ -1,0 +1,20 @@
+<div class="row" style="margin-right: 4%; margin-left:4%; margin-bottom: 2%">
+    <div class="col-5 user-box">
+        <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="[CountryISO.UnitedStates,CountryISO.UnitedKingdom]" [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true" [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+            [selectedCountryISO]="CountryISO.UnitedKingdom" [phoneValidation]="true" [(ngModel)]="phone1Value"  (keyup)="addPhone()">
+        </ngx-intl-tel-input>
+    </div>
+    <div class="col-4" style="margin-left: 7px;">
+        <input class="form-control" list="labelContacts" id="contactsDataList" placeholder="Label" name="phone1Type" [(ngModel)]="phone1Type" />
+        <datalist id="labelContacts">
+          <option value="Home"></option>
+          <option value="Work"></option>
+          <option value="Mobile"></option>
+          <option value="Main"></option>
+          <option value="Home Fax"></option>
+          <option value="Work Fax"></option>
+          <option value="Google Voice"></option>
+          <option value="Pager"></option>
+        </datalist>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div>
+    <p-table [value]="contacts" #dt dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10,25,50,100,500]" [loading]="loading"
+        styleClass="p-datatable-customers p-datatable-gridlines" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['NICKNAME', 'LASTNAME', 'FIRSTNAME','PHONE1_VALUE','EMAIL1_VALUE','ORGANIZATION1_NAME']">
+        <ng-template pTemplate="caption">
+
+            <div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill" id="example-search-input"
+                    placeholder="Search Client..." (input)="applyFilterGlobal($event, 'contains')"
+                    placeholder="Search Client...">
+
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
+                        type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="FIRST_NAME">Name
+                    <p-columnFilter type="text" field="FIRST_NAME" display="menu"></p-columnFilter>
+                    <p-sortIcon field="FIRST_NAME"></p-sortIcon>
+                </th>
+                <th pSortableColumn="PHONE1_VALUE">Phone Number
+                    <p-columnFilter type="text" field="PHONE1_VALUE" display="menu"></p-columnFilter>
+                    <p-sortIcon field="PHONE1_VALUE"></p-sortIcon>
+                </th>
+                <th pSortableColumn="EMAIL1_VALUE">Email
+                    <p-columnFilter type="text" field="EMAIL1_VALUE" display="menu"></p-columnFilter>
+                    <p-sortIcon field="EMAIL1_VALUE"></p-sortIcon>
+                </th>
+                <th pSortableColumn="ORGANIZATION1_NAME">Job
+                    <p-columnFilter type="text" field="ORGANIZATION1_NAME" display="menu"></p-columnFilter>
+                    <p-sortIcon field="ORGANIZATION1_NAME"></p-sortIcon>
+                </th>
+                <th pSortableColumn="labels">Labels
+                    <p-sortIcon field="labels"></p-sortIcon>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-contact1>
+            <tr>
+                <td style="width: 25%;">{{contact1.NICKNAME}} {{contact1.LAST_NAME}}</td>
+                <td style="width: 25%;">{{contact1.PHONE1_VALUE | showPhone}}</td>
+                <td style="width: 20%;">{{contact1.EMAIL1_VALUE}}</td>
+                <td style="width: 15%;">{{contact1.ORGANIZATION1_NAME}}</td>
+                <td style="width: 15%;"></td>
+
+                <td>
+                    <a [routerLink]="['/contacts/edit', contact1.ID]" class="btn btn-info btn-block"
+                        style="text-transform: capitalize;">
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-block" (click)="deleteContact(contact1.ID, contact1.FIRST_NAME)">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

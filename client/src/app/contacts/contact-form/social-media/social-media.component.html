@@ -1,0 +1,47 @@
+<form #myForm="ngForm">
+    <div class="row " style="margin-right: 4%; margin-left:4%; margin-bottom: 2%"
+        *ngFor="let social of socialValues; let i = index">
+        <div class="col-6">
+            <div class="mb-3">
+                <mat-form-field appearance="legacy" style="width: 250px;">
+                    <mat-label>Social Media</mat-label>
+                    <input matInput [(ngModel)]="social.value" name="social{{ i }}Value"
+                        (keyup)="addValueSocial(i, social)" required="">
+                </mat-form-field>
+            </div>
+            <mat-error
+                *ngIf="myForm.controls['social' + i+ 'Value']?.errors && myForm.controls['social' + i+ 'Value']?.touched">
+                This
+                field is required.
+            </mat-error>
+        </div>
+        <div class="col-4">
+            <mat-form-field class="example-full-width" appearance="legacy">
+                <mat-label>Label</mat-label>
+                <input matInput placeholder="Label" list="labelSocial" name="social{{ i }}Type"
+                    [(ngModel)]="socialValuesLabels[i].value" (keyup)="addValueSocialLabel(i, socialValuesLabels[i])"
+                    autocomplete="off">
+            </mat-form-field>
+            <datalist id="labelSocial">
+                <option value="Facebook"></option>
+                <option value="Instagram"></option>
+                <option value="Linkedln"></option>
+                <option value="Whatsapp"></option>
+                <option value="Tik-Tok"></option>
+                <option value="Telegram"></option>
+                <option value="Tinder"></option>
+            </datalist>
+        </div>
+        <div class="col-1">
+            <div style="margin-left: 0px;">
+                <button pButton (click)="deleteSocial(i)" type="button" icon="fas fa-minus"
+                    class="p-button-rounded p-button-danger" style="width: 30px; height:29px;"></button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div align="center">
+    <button pButton (click)="addSocial()" (click)="addSocialLabel()" type="button" icon="fas fa-plus"
+        class="p-button-rounded" style="width: 30px; height:29px"></button>
+</div>

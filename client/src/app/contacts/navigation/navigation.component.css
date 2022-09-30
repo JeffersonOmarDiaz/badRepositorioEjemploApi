@@ -1,0 +1,13 @@
+.header{
+    text-align: center;
+    margin-top: 0%; 
+    margin-bottom: 1%;
+}
+
+.navbar{
+    padding-top:0%;
+}
+
+.container-fluid{
+    background-color: #f8f9fa
+}

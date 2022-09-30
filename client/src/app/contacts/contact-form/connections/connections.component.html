@@ -1,0 +1,53 @@
+<div class="row " style="margin-right: 4%; margin-left:4%; margin-bottom: 2%"
+  *ngFor="let connection of connectionsValues; let i = index">
+
+  <div class="col-6">
+    <mat-form-field class="example-full-width" appearance="legacy" style="width: 250px;">
+      <mat-label>Contact</mat-label>
+      <input matInput placeholder="Type to search..." list="datalistOptions" name="connection{{ i }}Type"
+        id="exampleDataList"
+        (keyup)="addValueConnections(i, connection)" autocomplete="off"  [(ngModel)]="connection.value" required="">
+    </mat-form-field>
+    <datalist id="datalistOptions">
+      <option *ngFor="let contact of contacts" [value]="contact.FIRST_NAME"></option>
+    </datalist>
+  </div>
+
+  <div class="col-4">
+    <mat-form-field class="example-full-width" appearance="legacy">
+      <mat-label>Label</mat-label>
+      <input matInput placeholder="Label" list="labelConnections" name="connection{{ i }}Type"
+        [(ngModel)]="connectionsValuesLabels[i].value" (keyup)="addValueConnectionsLabel(i, connectionsValuesLabels[i])"
+        autocomplete="off">
+    </mat-form-field>
+    <datalist id="labelConnections">
+      <option value="Facebook"></option>
+      <option value="Job"></option>
+      <option value="Son"></option>
+      <option value="Father"></option>
+      <option value="Mother"></option>
+      <option value="Brother"></option>
+      <option value="Sister"></option>
+      <option value="Familiar"></option>
+      <option value="Referred"></option>
+      <option value="Friend"></option>
+      <option value="Boyfriend"></option>
+      <option value="Girlfriend"></option>
+    </datalist>
+  </div>
+  <div class="col-1">
+    <div style="margin-left: 0px;">
+      <button pButton (click)="deleteConnections(i)" type="button" icon="fas fa-minus"
+        class="p-button-rounded p-button-danger" style="width: 30px; height:29px;"></button>
+    </div>
+  </div>
+</div>
+<div align="center">
+  <button pButton (click)="addConnections()" (click)="addConnectionsLabel()" type="button" icon="fas fa-plus"
+    class="p-button-rounded" style="width: 30px; height:29px"></button>
+</div>
+
+<div align="center" style="margin-top: 3%;">
+  <p-button (click)="openNewUser()" type="button" icon="pi pi-user" class="p-button-primary"
+      label="New User" styleClass="p-button-sm"></p-button>
+</div>

@@ -1,0 +1,23 @@
+<div class="col-sm-8" style="margin-left: 5%">
+    <div class="kv-avatar">
+        <div class="file-loading">
+            <label for="image">
+                <figure>
+                    <img *ngIf="PHOTO && idValue; else image" src="http://localhost:3001/{{PHOTO}}" name="PHOTO" width="180px" class="rounded-circle" alt="100x100"  data-holder-rendered="true"/>
+                    <ng-template #image>
+                        <img [src]="imgURL"  name="PHOTO" width="180px" class="rounded-circle" alt="100x100"  data-holder-rendered="true"/>
+                    </ng-template>
+                    <figcaption style="color: white;background-color: rgb(66, 63, 63);font-size: small;">
+                        Click to select Contact Profile
+                    </figcaption>
+                </figure>
+            </label>
+        </div>
+        <!-- <input id="avatar-2" name="avatar-2" type="file" style="display: none"  (change)="fileChange($event)"/> -->
+        <input type="file" class="form-control-file" accept="image/*" name="image" id="image" style="display: none"
+        (change)="selectImage($event)">
+        
+        <p-toast></p-toast>
+        <button type="button" pButton icon="fa-solid fa-tag" label="" class="p-0"></button>
+    </div>
+</div>

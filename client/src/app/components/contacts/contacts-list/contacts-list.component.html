@@ -1,0 +1,149 @@
+<!-- <div class="row" style="margin-bottom: 15px;">
+    <div class="col">
+        <app-contact-input (onEnter)="buscar( $event )" (onDebounce)="sugerencias( $event )"
+            placeholder="Search client...">
+        </app-contact-input>
+    </div>
+</div> -->
+
+<!-- <form class="example-form">
+    <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Advanced Search" aria-label="Number" matInput [formControl]="myControl"
+            [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                <div [innerHTML]="option"></div>
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form> -->
+
+<!-- <div *ngIf="mostrarSugerencias; else complete">
+    <p-table [value]="contactsSugeridos">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="FIRST_NAME">Name
+                    <p-sortIcon field="FIRST_NAME"></p-sortIcon>
+                </th>
+                <th pSortableColumn="PHONE1_VALUE">Phone Number
+                    <p-sortIcon field="PHONE1_VALUE"></p-sortIcon>
+                </th>
+                <th pSortableColumn="EMAIL1_VALUE">Email
+                    <p-sortIcon field="EMAIL1_VALUE"></p-sortIcon>
+                </th>
+                <th pSortableColumn="ORGANIZATION1_NAME">Job
+                    <p-sortIcon field="ORGANIZATION1_NAME"></p-sortIcon>
+                </th>
+                <th pSortableColumn="labels">Labels
+                    <p-sortIcon field="labels"></p-sortIcon>
+                </th>
+                <th pSortableColumn="labels">
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-contact>
+            <tr> -->
+                <!-- <tr *ngFor="let contact of contactsSugeridos"> -->
+                <!-- <td style="width: 25%;">{{contact.FIRST_NAME}}</td>
+                <td style="width: 20%;">{{contact.PHONE1_VALUE}}</td>
+                <td style="width: 20%;">{{contact.EMAIL1_VALUE}}</td>
+                <td style="width: 15%;">{{contact.ORGANIZATION1_NAME}}</td>
+                <td style="width: 20%;"></td>
+                <td>
+                    <a [routerLink]="['/contacts/edit', contact.ID]" class="btn btn-info btn-block"
+                        style="text-transform: capitalize;">
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteContact(contact.ID)">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div> -->
+
+<div>
+<!-- <ng-template #complete> -->
+    <p-table [value]="contacts" #dt  dataKey="id" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50,100,500]" [loading]="loading" styleClass="p-datatable-customers p-datatable-gridlines"
+	[paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+	[globalFilterFields]="['FIRST_NAME','PHONE1_VALUE','EMAIL1_VALUE','ORGANIZATION1_NAME']">
+        <!-- <ng-template pTemplate="caption">
+            <div class="table-header">
+                List of Customers
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Global Search" />
+                </span>
+            </div>
+        </ng-template> -->
+        <ng-template pTemplate="caption">
+
+            <div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill"  id="example-search-input" placeholder="Search Client..." (input)="applyFilterGlobal($event, 'contains')" placeholder="Search Client...">
+             
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+           
+           
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="FIRST_NAME">Name
+                    <p-columnFilter type="text" field="FIRST_NAME" display="menu"></p-columnFilter>
+                    <p-sortIcon field="FIRST_NAME"></p-sortIcon>
+                </th>
+                <th pSortableColumn="PHONE1_VALUE">Phone Number
+                    <p-columnFilter type="text" field="PHONE1_VALUE" display="menu"></p-columnFilter>
+                    <p-sortIcon field="PHONE1_VALUE"></p-sortIcon>
+                </th>
+                <th pSortableColumn="EMAIL1_VALUE">Email
+                    <p-columnFilter type="text" field="EMAIL1_VALUE" display="menu"></p-columnFilter>
+                    <p-sortIcon field="EMAIL1_VALUE"></p-sortIcon>
+                </th>
+                <th pSortableColumn="ORGANIZATION1_NAME">Job
+                    <p-columnFilter type="text" field="ORGANIZATION1_NAME" display="menu"></p-columnFilter>
+                    <p-sortIcon field="ORGANIZATION1_NAME"></p-sortIcon>
+                </th>
+                <th pSortableColumn="labels">Labels
+                    <p-sortIcon field="labels"></p-sortIcon>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+            </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-contact1>
+            <!-- <tr *ngFor="let contact of contacts"> -->
+            <tr>
+                <td style="width: 25%;">{{contact1.FIRST_NAME}}</td>
+                <td style="width: 20%;">{{contact1.PHONE1_VALUE | showPhone}}</td>
+                <td style="width: 20%;">{{contact1.EMAIL1_VALUE}}</td>
+                <td style="width: 15%;">{{contact1.ORGANIZATION1_NAME}}</td>
+                <td style="width: 20%;"></td>
+                
+                <td>
+                    <a [routerLink]="['/contacts/edit', contact1.ID]" class="btn btn-info btn-block"
+                        style="text-transform: capitalize;">
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteContact(contact1.ID, contact1.FIRST_NAME)">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+<!-- </ng-template> -->
+</div>
